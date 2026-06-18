@@ -219,7 +219,7 @@ const MyJobs = () => {
             track your status here.
           </p>
           <Button asChild className="bg-purple-600 hover:bg-purple-700 text-white">
-            <Link to="/jobs">Browse Jobs</Link>
+            <Link to="/live-jobs">Browse Live Jobs</Link>
           </Button>
         </div>
       ) : (

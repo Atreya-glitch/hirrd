@@ -53,5 +53,13 @@ export async function getApplications(token, { candidate_id }) {
     return null;
   }
 
-  return data;
+  // Map misspelled describtion to description on nested job & Filter out target job
+  return data ? data
+    .filter(item => !item.job || (item.job.describtion !== 'abc' && item.job.description !== 'abc' && item.job.title?.toLowerCase() !== 'software enginner'))
+    .map(item => {
+      if (item.job) {
+        item.job.description = item.job.description || item.job.describtion;
+      }
+      return item;
+    }) : null;
 }

@@ -41,7 +41,7 @@ const LandingPage = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
           <Button asChild size="lg" className="bg-purple-600 text-white hover:bg-purple-700 h-12 px-8 text-base shadow-lg shadow-purple-600/20">
-            <Link to="/jobs">
+            <Link to="/live-jobs">
               Find Jobs <ArrowRight className="size-4 ml-1" />
             </Link>
           </Button>
@@ -102,7 +102,7 @@ const LandingPage = () => {
             </p>
           </div>
           <Button asChild variant="link" className="text-purple-400 hover:text-purple-300 p-0 h-auto justify-start font-semibold">
-            <Link to="/jobs" className="flex items-center gap-1">
+            <Link to="/live-jobs" className="flex items-center gap-1">
               Start Searching <ArrowRight className="size-4" />
             </Link>
           </Button>

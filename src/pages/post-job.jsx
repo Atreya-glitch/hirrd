@@ -76,8 +76,8 @@ const PostJob = () => {
           You need to be in Recruiter Mode to post job listings. Switch your
           role from the top-right dropdown.
         </p>
-        <Button onClick={() => navigate("/jobs")} className="bg-purple-600 hover:bg-purple-700 text-white">
-          Browse Jobs Instead
+        <Button onClick={() => navigate("/live-jobs")} className="bg-purple-600 hover:bg-purple-700 text-white">
+          Browse Live Jobs
         </Button>
       </div>
     );

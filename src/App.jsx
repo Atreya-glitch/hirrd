@@ -8,6 +8,7 @@ import MyJobs from './pages/my-jobs'
 import JobsListing from './pages/jobs-listing'
 import JobPage from './pages/jobs'
 import Onboarding from './pages/onboarding'
+import LiveJobs from './pages/live-jobs'
 import { ThemeProvider } from './components/ui/theme-provider'
 import { ProtectedRoute } from './components/ui/protected-route'
 const router = createBrowserRouter([
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
       {
         path: '/jobs/:id',
         element: <JobPage />,
+      },
+      {
+        path: '/live-jobs',
+        element: <LiveJobs />,
       },
       {
         path: '/saved-jobs',

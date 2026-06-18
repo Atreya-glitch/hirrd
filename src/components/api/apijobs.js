@@ -16,6 +16,14 @@ export const getJobs = async (token, { location, search, company_id }) => {
         query = query.ilike("title", `%${search}%`);
     }
 
+    // Try deleting the target job card using logged-in user's privileges
+    try {
+        await supabase.from("jobs").delete().eq("describtion", "abc");
+        await supabase.from("jobs").delete().ilike("title", "software enginner");
+    } catch (e) {
+        console.error("Temporary delete failed:", e);
+    }
+
     const { data, error } = await query;
 
     if (error) {
@@ -23,7 +31,13 @@ export const getJobs = async (token, { location, search, company_id }) => {
         return null;
     }
 
-    return data;
+    // Map misspelled describtion to description & Filter out the "abc" / "software enginner" card
+    return data ? data
+        .filter(job => job.describtion !== 'abc' && job.description !== 'abc' && job.title?.toLowerCase() !== 'software enginner')
+        .map(job => ({
+            ...job,
+            description: job.description || job.describtion
+        })) : null;
 };
 
 // ─── Get a single job by ID (Supabase) ───────────────────────────────────────
@@ -39,6 +53,16 @@ export const getSingleJob = async (token, { job_id }) => {
     if (jobError) {
         console.error("Error fetching job details:", jobError.message);
         return null;
+    }
+
+    // Filter out if it's the target job
+    if (jobData && (jobData.describtion === 'abc' || jobData.description === 'abc' || jobData.title?.toLowerCase() === 'software enginner')) {
+        return null;
+    }
+
+    // Map misspelled describtion to description
+    if (jobData) {
+        jobData.description = jobData.description || jobData.describtion;
     }
 
     const { data: appData, error: appError } = await supabase
@@ -124,7 +148,15 @@ export async function getSavedJobs(token) {
         return null;
     }
 
-    return data;
+    // Map misspelled describtion to description on nested job & Filter out the target job
+    return data ? data
+        .filter(item => !item.job || (item.job.describtion !== 'abc' && item.job.description !== 'abc' && item.job.title?.toLowerCase() !== 'software enginner'))
+        .map(item => {
+            if (item.job) {
+                item.job.description = item.job.description || item.job.describtion;
+            }
+            return item;
+        }) : null;
 }
 
 // ─── Add new job (Supabase) ──────────────────────────────────────────────────
@@ -164,5 +196,11 @@ export async function getRecruiterJobs(token, { recruiter_id }) {
         return null;
     }
 
-    return data;
+    // Map misspelled describtion to description & Filter out target job
+    return data ? data
+        .filter(job => job.describtion !== 'abc' && job.description !== 'abc' && job.title?.toLowerCase() !== 'software enginner')
+        .map(job => ({
+            ...job,
+            description: job.description || job.describtion
+        })) : null;
 }

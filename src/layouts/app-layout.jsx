@@ -14,7 +14,7 @@ const AppLayout = () => {
       if (!role && location.pathname !== "/onboarding") {
         navigate("/onboarding");
       } else if (role && location.pathname === "/onboarding") {
-        navigate("/jobs");
+        navigate("/live-jobs");
       }
     }
   }, [user, isLoaded, location.pathname, navigate]);

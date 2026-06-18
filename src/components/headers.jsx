@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { Button } from "./ui/button";
 import logo from "../assets/logo.png";
-import { Briefcase, Heart, PlusCircle, User, LogOut, ChevronDown } from "lucide-react";
+import { Briefcase, Heart, PlusCircle, User, LogOut, ChevronDown, Globe } from "lucide-react";
 import { useUser, useClerk, SignInButton } from "@clerk/clerk-react";
 
 const Header = () => {
@@ -42,15 +42,15 @@ const Header = () => {
       
         <nav className="hidden md:flex items-center gap-6">
           <NavLink
-            to="/jobs"
+            to="/live-jobs"
             className={({ isActive }) =>
               `flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-purple-400 ${
                 isActive ? "text-purple-400" : "text-muted-foreground"
               }`
             }
           >
-            <Briefcase className="size-4" />
-            Find Jobs
+            <Globe className="size-4 text-purple-400" />
+            Live Jobs
           </NavLink>
 
           <NavLink

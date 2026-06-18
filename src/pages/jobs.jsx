@@ -81,8 +81,8 @@ const JobPage = () => {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-white">
         <h2 className="text-2xl font-bold mb-4">Job Not Found</h2>
-        <Button onClick={() => navigate("/jobs")} className="bg-purple-600 hover:bg-purple-700 text-white">
-          Back to Jobs
+        <Button onClick={() => navigate("/live-jobs")} className="bg-purple-600 hover:bg-purple-700 text-white">
+          Back to Live Jobs
         </Button>
       </div>
     );

@@ -20,7 +20,7 @@ const Onboarding = () => {
         unsafeMetadata: { role },
       });
       if (role === "candidate") {
-        navigate("/jobs");
+        navigate("/live-jobs");
       } else {
         navigate("/post-job");
       }
