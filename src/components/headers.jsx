@@ -87,8 +87,20 @@ const Header = () => {
               }`
             }
           >
-            <User className="size-4" />
+            <Briefcase className="size-4" />
             My Jobs
+          </NavLink>
+
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              `flex items-center gap-1.5 text-sm font-medium transition-colors hover:text-purple-400 ${
+                isActive ? "text-purple-400" : "text-muted-foreground"
+              }`
+            }
+          >
+            <User className="size-4" />
+            My Profile
           </NavLink>
         </nav>
 
@@ -118,8 +130,17 @@ const Header = () => {
 
               {dropdownOpen && (
                 <div className="absolute right-0 mt-2 w-56 rounded-xl border border-white/10 bg-[#16171d] p-1.5 shadow-xl ring-1 ring-black/5 animate-in fade-in slide-in-from-top-2 duration-150">
-                  <div className="px-3 py-2 text-xs font-semibold text-muted-foreground border-b border-white/5 mb-1">
-                    Switch Test Account
+                  <Link
+                    to="/profile"
+                    onClick={() => setDropdownOpen(false)}
+                    className="w-full flex items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors hover:bg-white/5 text-foreground"
+                  >
+                    <User className="size-4" />
+                    My Profile
+                  </Link>
+                  <div className="border-t border-white/5 my-1" />
+                  <div className="px-3 py-2 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider">
+                    Switch Account Role
                   </div>
                   <button
                     onClick={() => handleRoleChange("candidate")}
@@ -127,7 +148,7 @@ const Header = () => {
                       user.role === "candidate" ? "text-purple-400 font-medium" : "text-foreground"
                     }`}
                   >
-                    <User className="size-4" />
+                    <User className="size-4 text-zinc-400" />
                     Candidate Mode
                   </button>
                   <button
@@ -136,7 +157,7 @@ const Header = () => {
                       user.role === "recruiter" ? "text-purple-400 font-medium" : "text-foreground"
                     }`}
                   >
-                    <PlusCircle className="size-4" />
+                    <PlusCircle className="size-4 text-zinc-400" />
                     Recruiter Mode
                   </button>
                   <div className="border-t border-white/5 my-1" />

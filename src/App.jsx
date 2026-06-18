@@ -9,6 +9,7 @@ import JobsListing from './pages/jobs-listing'
 import JobPage from './pages/jobs'
 import Onboarding from './pages/onboarding'
 import LiveJobs from './pages/live-jobs'
+import Profile from './pages/profile'
 import { ThemeProvider } from './components/ui/theme-provider'
 import { ProtectedRoute } from './components/ui/protected-route'
 const router = createBrowserRouter([
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/my-jobs',
         element: <MyJobs />,
+      },
+      {
+        path: '/profile',
+        element: <Profile />,
       },
     ],
   },

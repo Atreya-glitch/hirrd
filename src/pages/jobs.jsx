@@ -69,7 +69,6 @@ const JobPage = () => {
   const handleStatusChange = async (value) => {
     const isOpen = value === "open";
     await fnUpdateStatus({ job_id: id, isOpen });
-    // Refetch to get updated status
     fetchJob();
   };
 
